@@ -1,4 +1,4 @@
-# Parallel Programming with Pthreads
+# Serial & Parallelwith Pthreads Programming 
 Parallel Programming with Pthreads. 
 
 ## University of Costa Rica
