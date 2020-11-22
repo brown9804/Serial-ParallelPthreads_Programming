@@ -1,6 +1,9 @@
 # Serial & Parallel with 
 # Pthreads Programming 
-Parallel Programming with Pthreads. 
+
+Two algorithms:
+1. Multiplication of vectors and matrices. 
+2. Number pi calculation
 
 ## University of Costa Rica
 #### November, 2020
@@ -8,11 +11,6 @@ Parallel Programming with Pthreads.
 ## Integrants
 1. Brown Ramírez, Timna Belinda  B61254
 2. Esquivel Molina, Brandon B52571
-
----------------------------------------------
-Two algorithms:
-1. Multiplication of vectors and matrices. 
-2. Number pi calculation
 
 ## Instructions
 
