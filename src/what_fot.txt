@@ -6,4 +6,4 @@ What for?
 
 
 This folder is needed because
-it is where src files are.
+it is where the main or primaries are.
