@@ -1,5 +1,3 @@
-#ifndef PISERIAL
-#define PISERIAL
 
 // ##--------------------------------pi serial file------------------------------------
 // ##
@@ -13,13 +11,11 @@
 // ##########   IMPORTING  PACKAGES ##########
 #include <stdio.h>
 #include <stdlib.h>
-#include <iostream>
 #include <math.h>
 
 // ##########DEFINITIONS OF NECESSARY FUNCTIONS##########
 // Characteristics
 #define ITER 100
-#define CIRCUFERENCE 900
 
 // ########## SERIAL CALCULATION ##########
 // USING CIRCLE METHOD
@@ -33,27 +29,30 @@
 // It is going to be done for ITER times
 
 // ########## VARIABLES ##########
-int i = 0;
+int n = 0;
 double radio = 0.0;
 double pi_result = 0.0;
-unsigned double pi_sum = 0.0;
-unsigned double pi_average = 0.0;
+double pi_sum = 0.0;
+double pi_average = 0.0;
 
 // ########## DEFINITION ##########
+// Leibniz formula for pi calculation
+// xn+1 = xn + (-1)^n / 2n+1     , x0 = 1
 double serial_calculation(){
 
-    for (i = 0; i <= ITER; i++){
-        // Getting random radio
-        radio = (double)rand() / CIRCUFERENCE;
-        pi_result = CIRCUFERENCE / (2 * radio);
+    while (n < ITER){
+        double power1 = pow(-1, n);
+        double den = 2 * n + 1;
+        double serie = power1 / den;
+        pi_result = pi_result + 4 * serie;
+        n++;
+
         pi_sum = pi_sum + pi_result;
     }
 
     // AVEGAGE...
-    pi_average = pi_sum/ITER;
-    printf("PI result using SERIAL calculation:                  ", pi_average);
+    pi_average = pi_sum/n;
+    printf("\nPI result using SERIAL calculation:                    %f\n", pi_average);
 
     return pi_average;
 }
-
-#endif
