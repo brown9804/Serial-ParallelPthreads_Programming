@@ -17,7 +17,6 @@
 // Characteristics
 #define AMOUNT_THREADS 8
 #define ITER 100
-#define THREAD (ITER/AMOUNT_THREADS)
 
 // ########## PARALLEL CALCULATION ##########
 // Using a mutex - MUTual EXclusion
@@ -28,29 +27,36 @@
 // xn+1 = xn + (-1)^n / 2n+1     , x0 = 1
 
 
-double piparallel_calculator(void *thread_num){
+double piparallel_calculator(){
     // ########## VARIABLES ##########
-    int first_thread_iter = (int)thread_num * THREAD;
-    int last_thread_iter = first_thread_iter + THREAD;
     double pi_thread_result = 0.0;
-    double pi_result = 0.0;
+    double pi_average = 0.0;
+    double power1 = 0.0;
+    double den = 0.0;
+    double serie = 0.0;
 
+    // ########## OP ##########
     pthread_mutex_t mutex; // MUTual EXclusion
-    int n = first_thread_iter;
+    int n = 0;
+    int iter_pthreads = ITER * AMOUNT_THREADS;
 
-     while (n < last_thread_iter){
-        double power1 = pow(-1, n);
-        double den = 2*n+1;
-        double serie = power1 / den;
-        pi_thread_result = pi_thread_result +  4 * serie;
+    while (n < iter_pthreads)
+    {
+        power1 = pow(-1, n);
+        den = 2*n+1;
+        serie =  power1 / den;
+        pi_thread_result = pi_thread_result +  4* serie;
+        pi_average += pi_thread_result;
+        // FOR TESTS
+        //printf("\nPI Calculation #%d \nResult using PARALLEL calculation:                  %f", n, pi_thread_result);
         n++;
     }
 
     pthread_mutex_lock(&mutex);
-    pi_result = pi_result  + pi_thread_result;
+    pi_average = pi_average/iter_pthreads;
     pthread_mutex_unlock(&mutex);
 
-    printf("\nPI result using PARALLEL calculation:                  %f", pi_result);
-
-    return pi_result;
+    return pi_average;
 }
+
+
