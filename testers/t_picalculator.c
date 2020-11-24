@@ -15,7 +15,7 @@
 
 // ########## DEFINITIONS OF NECESSARY FUNCTIONS ##########
 // Characteristics
-#define AMOUNT_THREADS 8
+#define TPI_AMOUNT_THREADS 8
 #define ITER 100
 
 // Comparing serial result versus parallel result
@@ -30,18 +30,19 @@ int t_picalculator()
     // CALLING SERIAL
     pi_serial_result = serial_calculation();
     ////////////////////////////
-    pi_parallel_result = piparallel_calculator();
 
     // CALLING PARALLEL
-    pthread_t threads[AMOUNT_THREADS];
+    pi_parallel_result = piparallel_calculator();
+    
+    pthread_t threads[TPI_AMOUNT_THREADS];
 
-    while (n0 < AMOUNT_THREADS){
+    while (n0 < TPI_AMOUNT_THREADS){
         pthread_create(&threads[n0], NULL, (void *)piparallel_calculator, &threads[n0]);
         n0++;
     }
 
 
-    while (n1 < AMOUNT_THREADS) {
+    while (n1 < TPI_AMOUNT_THREADS) {
         pthread_join(threads[n1], NULL);
         n1++;
     }

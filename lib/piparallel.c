@@ -13,7 +13,7 @@
 
 // ##########DEFINITIONS OF NECESSARY FUNCTIONS##########
 // Characteristics
-#define AMOUNT_THREADS 8
+#define PI_AMOUNT_THREADS 8
 #define ITER 100
 
 // ########## PARALLEL CALCULATION ##########
@@ -36,7 +36,7 @@ double piparallel_calculator(){
     // ########## OP ##########
     pthread_mutex_t mutex; // MUTual EXclusion
     int n = 0;
-    int iter_pthreads = ITER * AMOUNT_THREADS;
+    int iter_pthreads = ITER * PI_AMOUNT_THREADS;
 
     while (n < iter_pthreads)
     {
