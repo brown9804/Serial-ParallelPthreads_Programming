@@ -70,7 +70,7 @@ int t_vecmatrix_status()
         err_byelement = ver_serial / (int)ver_parallel; // castingmake
     }
     else{
-        err_byelement = 0.0000;
+        err_byelement = 1;
     }
 
     printf("\nERROR RATE:                %lf %c", (err_byelement / 100), 37);
