@@ -55,7 +55,6 @@ int vecmatrix_parallel(int rand_values)
     int matrix[x][x];
     int vector[x][1];
     int matrix_result[x][x]; // mxn X nxm =  mxm
-    int avg_matrix_result[x][x];
 
     int sum_results_par = 0;
 
@@ -99,9 +98,13 @@ int vecmatrix_parallel(int rand_values)
             {
                 value = value;
             }
+            else if (abs(value) == 0)
+            {
+                value = 28;
+            }
             else
             {
-                value = round(value / 2819);
+                value = round(value / 462819);
             }
             vector[i][j] = value;
             // printf("vector[%d][%d] = %d \n", i, j, vector[i][j]);
@@ -145,7 +148,6 @@ int vecmatrix_parallel(int rand_values)
                     sum += matrix[i][j] * vector[j][a];
                 }
                 matrix_result[i][a] = sum;
-                avg_matrix_result[i][j] = avg_matrix_result[i][j] + sum; // need to be divided
             }
         }
 
@@ -162,31 +164,14 @@ int vecmatrix_parallel(int rand_values)
             for (int j = 0; j < x; j++) // column vector
             {
                 printf("%d ", matrix_result[i][j]);
+                sum_results_par += matrix_result[i][j];
             }
             printf("\n");
         }
     }
 
-
-    // printf("\n***************************\n");
-    // printf("		MULTIPLICATION RESULT PARALLEL 	");
-    // printf("\n***************************\n");
-
-
-    // for (int i = 0; i < x; i++) // row vector
-    // {
-    //     for (int j = 0; j < x; j++) // column vector
-    //     {
-    //         avg_matrix_result[i][j] = avg_matrix_result[i][j] / x * AMOUNT_THREADS;
-    //         printf("%d ", avg_matrix_result[i][j]);
-    //         //////////////////// TESTING - SUM VALUES
-    //         sum_results_par += avg_matrix_result[i][j];
-    //     }
-    //     printf("\n");
-    // }
-
     pthread_mutex_lock(&mutex);
-
+    sum_results_par = sum_results_par / iter_pthreads;
     pthread_mutex_unlock(&mutex);
 
     return sum_results_par;

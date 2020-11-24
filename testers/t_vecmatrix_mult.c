@@ -17,7 +17,7 @@
 // ########## DEFINITIONS OF NECESSARY FUNCTIONS ##########
 // Characteristics
 #define T_AMOUNT_THREADS 1
-
+#define PARALLEL_PTHREADS 8
 // Comparing serial result versus parallel result
 int t_vecmatrix_status()
 {
@@ -26,7 +26,12 @@ int t_vecmatrix_status()
     int n1 = 0;
     int assert = 0;
     int miss = 0;
+    int ver_serial = 0;
+    void *ver_parallel;
     clock_t start;
+
+
+
     ///////// INPUT 
     int rand_values = round(rand()%start);
     if (abs(rand_values) < 100)
@@ -35,20 +40,17 @@ int t_vecmatrix_status()
     }
     else
     {
-        rand_values = round(rand_values / 2819);
+        rand_values = round(rand_values / 462819);
     }
     /////////////////////
 
 
     // CALLING SERIAL
-    int ver_serial = vecmatrix_serial(rand_values);
-    // printf("\nVerifying VALUE SERIAL:               %d", ver_serial);
+    ver_serial = vecmatrix_serial(rand_values);
+    printf("\nVerifying VALUE SERIAL:               %d", ver_serial);
     ////////////////////////////
 
     // CALLING PARALLEL
-    // int ver_parallel = vecmatrix_parallel(rand_values);
-    // printf("\nVerifying VALUE PARALLEL:             %d", ver_parallel);
-
     pthread_t threads[T_AMOUNT_THREADS];
 
     while (n0 < T_AMOUNT_THREADS){
@@ -56,27 +58,40 @@ int t_vecmatrix_status()
         n0++;
     }
 
+
     while (n1 < T_AMOUNT_THREADS) {
-        pthread_join(threads[n1], NULL);
+        pthread_join(threads[n1], &ver_parallel);
         n1++;
     }
 
-    // // COMPARE
-    // float err_byelement = ver_serial / ver_parallel;
-    // printf("\nERROR              %f", err_byelement);
-    // printf("\nERROR RATE ON THE POSITION:                %f %c", (err_byelement - 1), 37);
-    // if (err_byelement <= 1.1)
-    // {
-    //     assert++;
-    // }
-    // else
-    // {
-    //     miss++;
-    // }
-    // ////////////////
-    // printf("\nTotal of asserts:            %d", assert);
-    // printf("\nTotal of misses:             %d", miss);
 
-    return 0;
+    //////////////////////////////////////////
+    // COMPARE
+    double err_byelement = ver_serial / (int)ver_parallel; // castingmake
+    printf("\nERROR RATE:                %lf %c", (err_byelement / 100), 37);
+
+    /// ALLOW 5% of error
+    if (((err_byelement / 100) == 5.0) || ((err_byelement / 100) <= 5.0))
+    {
+        assert++;
+    }
+    else
+    {
+        miss++;
+    }
+    ////////////////
+    printf("\nTotal of asserts:            %d", assert);
+    printf("\nTotal of misses:             %d", miss);
+    if (miss < 1)
+    {
+        return 0;
+    }
+    else
+    {
+
+        return 8;
+    }
+
+
 
 }

@@ -62,7 +62,7 @@ int main(){
         printf("\n-----------------------------------------------\n");
         printf("\nMATRIX & VECTORS (*) CALCULATOR --- Status -------> \nSerial & Paralel are:\nSAME results\n");
         printf("\n-----------------------------------------------\n");
-        return EXIT_SUCCESS;
+        // return EXIT_SUCCESS;
     }
     else
     {
@@ -70,7 +70,7 @@ int main(){
         printf("\nMATRIX & VECTORS (*) CALCULATOR --- Status ------->  \nSerial & Paralel are:\nNOT the same results\n");
         printf("\n-----------------------------------------------\n");
         printf("\nIs going to be a  EXIT_FAILURE\n");
-        exit(EXIT_FAILURE);
+        // exit(EXIT_FAILURE);
     }
 }
 
