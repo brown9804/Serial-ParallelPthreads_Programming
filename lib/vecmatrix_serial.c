@@ -67,7 +67,7 @@ int vecmatrix_serial(int rand_values)
             }
             else
             {
-                value = round(value / 62819);
+                value = round(value / 2819);
             }
             matrix[i][j] = value;
             // printf("matrix[%d][%d] = %d \n", i, j, matrix[i][j]);
@@ -135,18 +135,18 @@ int vecmatrix_serial(int rand_values)
     //////////////////// TESTING - SUM VALUES
     int sum_results_ser = 0;
 
-    printf("\n***************************\n");
-    printf("		MULTIPLICATION RESULT ON SERIAL	");
-    printf("\n***************************\n");
+    // printf("\n***************************\n");
+    // printf("		MULTIPLICATION RESULT ON SERIAL	");
+    // printf("\n***************************\n");
 
     for (int i = 0; i < n; i++) // row vector
     {
         for (int j = 0; j < n; j++) // column vector
         {
-            printf("%d ", matrix_result[i][j]);
+            // printf("%d ", matrix_result[i][j]);
             sum_results_ser = sum_results_ser + matrix_result[i][j]; // testing
         }
-        printf("\n");
+        // printf("\n");
     }
 
     return sum_results_ser;

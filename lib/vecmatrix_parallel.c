@@ -104,7 +104,7 @@ int vecmatrix_parallel(int rand_values)
             }
             else
             {
-                value = round(value / 62819);
+                value = round(value / 2819);
             }
             vector[i][j] = value;
             // printf("vector[%d][%d] = %d \n", i, j, vector[i][j]);

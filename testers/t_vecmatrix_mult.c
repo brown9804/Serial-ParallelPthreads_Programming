@@ -40,7 +40,7 @@ int t_vecmatrix_status()
     }
     else
     {
-        rand_values = round(rand_values / 62819);
+        rand_values = round(rand_values / 2819);
     }
     /////////////////////
 
@@ -66,9 +66,10 @@ int t_vecmatrix_status()
 
     //////////////////////////////////////////
     // COMPARE
-    if ((int)ver_parallel != 0){
-        err_byelement = ver_serial / (int)ver_parallel; // castingmake
-    }
+    if ( ((int)ver_parallel != 0 ) && ((int)ver_serial != 0) )
+        {
+            err_byelement = ver_serial / (int)ver_parallel; // castingmake
+        }
     else{
         err_byelement = 1;
     }
