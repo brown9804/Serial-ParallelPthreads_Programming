@@ -47,7 +47,6 @@ int main(){
         printf("\n .        .   .          (__}'         ");
         printf("\n .         .         . -{{_(|8)         ");
         printf("\n' .  . ' ' .  . '        (__}'             \n");
-        printf("\nIs going to be a  EXIT_FAILURE\n\n\n");
         // exit(EXIT_FAILURE);
     }
 
@@ -69,7 +68,6 @@ int main(){
         printf("\n-----------------------------------------------\n");
         printf("\nMATRIX & VECTORS (*) CALCULATOR --- Status ------->  \nSerial & Paralel are:\nNOT the same results\n");
         printf("\n-----------------------------------------------\n");
-        printf("\nIs going to be a  EXIT_FAILURE\n");
         // exit(EXIT_FAILURE);
     }
 }

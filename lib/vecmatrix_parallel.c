@@ -17,7 +17,7 @@ clock_t start;
 
 // ##########DEFINITIONS OF NECESSARY FUNCTIONS##########
 // Characteristics
-#define AMOUNT_THREADS 8
+#define PARALLEL_AMOUNT_THREADS 8
 #define ITER_PARALLEL_MATRIX 1
 
 // ########## DEFINITION ##########
@@ -104,7 +104,7 @@ int vecmatrix_parallel(int rand_values)
             }
             else
             {
-                value = round(value / 462819);
+                value = round(value / 62819);
             }
             vector[i][j] = value;
             // printf("vector[%d][%d] = %d \n", i, j, vector[i][j]);
@@ -133,7 +133,7 @@ int vecmatrix_parallel(int rand_values)
     ///////////////////////////////////
     // ########## OP ##########
     pthread_mutex_t mutex; // MUTual EXclusion
-    int iter_pthreads = ITER_PARALLEL_MATRIX * AMOUNT_THREADS;
+    int iter_pthreads = ITER_PARALLEL_MATRIX * PARALLEL_AMOUNT_THREADS;
 
     for (int num_pthreads = 0; num_pthreads < iter_pthreads; num_pthreads++) // while -> iter_pthreads
     {
@@ -151,22 +151,22 @@ int vecmatrix_parallel(int rand_values)
             }
         }
 
-        //////////////////
-        ////////////FOR TESTS PTHREADS
-        //////////////////
+        // //////////////////
+        // ////////////FOR TESTS PTHREADS
+        // //////////////////
 
-        printf("\n*----------------------\n");
-        printf("\nParallel Matrix #%d:\n", num_pthreads);
-        printf("\n*----------------------\n");
+        // printf("\n*----------------------\n");
+        // printf("\nParallel Matrix #%d:\n", num_pthreads);
+        // printf("\n*----------------------\n");
 
         for (int i = 0; i < x; i++) // row vector
         {
             for (int j = 0; j < x; j++) // column vector
             {
-                printf("%d ", matrix_result[i][j]);
+                // printf("%d ", matrix_result[i][j]);
                 sum_results_par += matrix_result[i][j];
             }
-            printf("\n");
+            // printf("\n");
         }
     }
 

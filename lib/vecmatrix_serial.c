@@ -67,7 +67,7 @@ int vecmatrix_serial(int rand_values)
             }
             else
             {
-                value = round(value / 462819);
+                value = round(value / 62819);
             }
             matrix[i][j] = value;
             // printf("matrix[%d][%d] = %d \n", i, j, matrix[i][j]);
