@@ -21,7 +21,7 @@ all: main.o
 	$(EXC)main.o
 
 %.o: $(SRC)%.c
-	gcc -pthread $^ -o $(EXC)$@
+	gcc -pthread $^ -o $(EXC)$@ -lm
 
 
 .PHONY: clean
