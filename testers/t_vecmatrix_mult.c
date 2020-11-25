@@ -29,23 +29,19 @@ int t_vecmatrix_status()
     int ver_serial = 0;
     void *ver_parallel;
     clock_t start;
-
     double err_byelement = 0.0;
 
     ///////// INPUT
-    int rand_values = round(rand() % start);
-    if (abs(rand_values) < 100)
-    {
-        rand_values = rand_values;
-    }
-    else
-    {
-        rand_values = round(rand_values / 2819);
-    }
+    start = clock(); // begin time mark
+
+    // Random dimension [3, 8]
+    // example int x =(rand() % 10)+10; from 10 - 20
+    int x = (rand() % (8 - 3 + 1)) + 3;
+
     /////////////////////
 
     // CALLING SERIAL
-    ver_serial = vecmatrix_serial(rand_values);
+    ver_serial = vecmatrix_serial(x);
     // printf("\nVerifying VALUE SERIAL:               %d", ver_serial);
     ////////////////////////////
 

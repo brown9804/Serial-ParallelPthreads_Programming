@@ -17,31 +17,13 @@ clock_t start;
 // ########## DEFINITION ##########
 //1. Create random matriz and random vector
 //2. nx1 X nxn, where n in range of [3, 8]
-int vecmatrix_serial(int rand_values)
+int vecmatrix_serial(int n)
 {
     // ########## VARIABLES ##########
     int i = 0;
     int j = 0;
-    int n = 0;
 
     start = clock(); // begin time mark
-
-    // Random dimension [3, 8]
-    // example int x =(rand() % 10)+10; from 10 - 20
-    int n3 = rand_values % 3; // 0 - 3
-    int n8 = rand_values % 8; // 0 - 8
-    if ((abs(n8 - n3) != 0) && (abs(n8 - n3) <100))
-    {
-        n = abs(n8 - n3);
-    }
-    else if (abs(n8 - n3) == 0)
-    {
-        n = 3;
-    }
-    else
-    {
-        n = 2;
-    }
 
     // printf("\nDimension:               %d\n", n);
 
@@ -135,18 +117,18 @@ int vecmatrix_serial(int rand_values)
     //////////////////// TESTING - SUM VALUES
     int sum_results_ser = 0;
 
-    // printf("\n***************************\n");
-    // printf("		MULTIPLICATION RESULT ON SERIAL	");
-    // printf("\n***************************\n");
+    printf("\n***************************\n");
+    printf("		MULTIPLICATION RESULT ON SERIAL	");
+    printf("\n***************************\n");
 
     for (int i = 0; i < n; i++) // row vector
     {
         for (int j = 0; j < n; j++) // column vector
         {
-            // printf("%d ", matrix_result[i][j]);
+            printf("%d ", matrix_result[i][j]);
             sum_results_ser = sum_results_ser + matrix_result[i][j]; // testing
         }
-        // printf("\n");
+        printf("\n");
     }
 
     return sum_results_ser;

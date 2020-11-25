@@ -23,33 +23,23 @@ clock_t start;
 // ########## DEFINITION ##########
 //1. Create random matriz and random vector
 //2. nx1 X nxn, where n in range of [3, 8]
-int vecmatrix_parallel(int rand_values)
+int vecmatrix_parallel()
 {
     // ########## VARIABLES ##########
     int i = 0;
     int j = 0;
-    int x = 0;
+
+    clock_t start;
 
     start = clock(); // begin time mark
 
     // Random dimension [3, 8]
+    // int x = (rand() % (upper - lower + 1)) + lower
     // example int x =(rand() % 10)+10; from 10 - 20
-    int x3 = rand_values % 3; // 0 - 3
-    int x8 = rand_values % 8; // 0 - 8
-    if ((abs(x8 - x3) != 0) && (abs(x8 - x3) < 100))
-    {
-        x = abs(x8 - x3);
-    }
-    else if (abs(x8 - x3) == 0)
-    {
-        x = 3;
-    }
-    else
-    {
-        x = 2;
-    }
+    // RANGE 3 - 8
+    int x = (rand() % (8 - 3 + 1)) + 3;
 
-    // printf("\nDimension:               %d\n", x);
+    printf("\nDimension:               %d\n", x);
 
     ///////////////////////
     int matrix[x][x];
@@ -151,23 +141,37 @@ int vecmatrix_parallel(int rand_values)
             }
         }
 
-        // //////////////////
-        // ////////////FOR TESTS PTHREADS
-        // //////////////////
+        // // //////////////////
+        // // ////////////FOR TESTS PTHREADS
+        // // //////////////////
 
         // printf("\n*----------------------\n");
         // printf("\nParallel Matrix #%d:\n", num_pthreads);
         // printf("\n*----------------------\n");
 
-        for (int i = 0; i < x; i++) // row vector
+        // for (int i = 0; i < x; i++) // row vector
+        // {
+        //     for (int j = 0; j < x; j++) // column vector
+        //     {
+        //         printf("%d ", matrix_result[i][j]);
+        //         sum_results_par += matrix_result[i][j];
+        //     }
+        //     printf("\n");
+        // }
+    }
+
+    printf("\n***************************\n");
+    printf("		MULTIPLICATION RESULT ON PARALLEL	");
+    printf("\n***************************\n");
+
+    for (int i = 0; i < x; i++) // row vector
+    {
+        for (int j = 0; j < x; j++) // column vector
         {
-            for (int j = 0; j < x; j++) // column vector
-            {
-                // printf("%d ", matrix_result[i][j]);
-                sum_results_par += matrix_result[i][j];
-            }
-            // printf("\n");
+            printf("%d ", matrix_result[i][j]);
+            sum_results_par += matrix_result[i][j];
         }
+        printf("\n");
     }
 
     pthread_mutex_lock(&mutex);
