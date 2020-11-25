@@ -1,0 +1,23 @@
+image: gcc
+
+    
+stages:
+    - build
+    - test
+
+build:
+    stage: build
+    script:
+    - echo "Build Stage"
+    - gcc -pthread src/main.c -o ./exc/main.o -lm
+
+    artifacts:
+        paths:
+        - exc/
+
+test:
+  stage: test
+  script:
+    - echo "Test Stage"
+    - chmod +x run_file.sh
+    - ./run_file.sh
