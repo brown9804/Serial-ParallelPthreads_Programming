@@ -13,10 +13,6 @@
 
 // ##########DEFINITIONS OF NECESSARY FUNCTIONS##########
 // Characteristics
-clock_t start;
-
-// ##########DEFINITIONS OF NECESSARY FUNCTIONS##########
-// Characteristics
 #define PARALLEL_AMOUNT_THREADS 8
 #define ITER_PARALLEL_MATRIX 1
 
@@ -28,10 +24,6 @@ int vecmatrix_parallel()
     // ########## VARIABLES ##########
     int i = 0;
     int j = 0;
-
-    clock_t start;
-
-    start = clock(); // begin time mark
 
     // Random dimension [3, 8]
     // int x = (rand() % (upper - lower + 1)) + lower
@@ -55,8 +47,8 @@ int vecmatrix_parallel()
     {
         for (j = 0; j < x; j++) // column
         {
-            int value = rand() % start;
-            matrix[i][j] = value;
+            int value = (rand() % (100000 - 0 + 1)) + 0;
+            matrix[i][j] = abs(value);
             // printf("matrix[%d][%d] = %d \n", i, j, matrix[i][j]);
         }
     }
@@ -83,21 +75,9 @@ int vecmatrix_parallel()
     {
         for (j = 0; j < 1; j++) // column
         {
-            int value = rand() % start;
-            if (abs(value) < 100)
-            {
-                value = value;
-            }
-            else if (abs(value) == 0)
-            {
-                value = 28;
-            }
-            else
-            {
-                value = round(value / 2819);
-            }
+            int value = abs((rand() % (50000 - 0 + 1)) + 0);
             vector[i][j] = value;
-            // printf("vector[%d][%d] = %d \n", i, j, vector[i][j]);
+            //printf("vector[%d][%d] = %d \n", i, j, vector[i][j]);
         }
     }
 
@@ -160,18 +140,18 @@ int vecmatrix_parallel()
         // }
     }
 
-    printf("\n***************************\n");
-    printf("		MULTIPLICATION RESULT ON PARALLEL	");
-    printf("\n***************************\n");
+    // printf("\n***************************\n");
+    // printf("		MULTIPLICATION RESULT ON PARALLEL	");
+    // printf("\n***************************\n");
 
     for (int i = 0; i < x; i++) // row vector
     {
         for (int j = 0; j < x; j++) // column vector
         {
-            printf("%d ", matrix_result[i][j]);
+            // printf("%d ", matrix_result[i][j]);
             sum_results_par += matrix_result[i][j];
         }
-        printf("\n");
+        // printf("\n");
     }
 
     pthread_mutex_lock(&mutex);

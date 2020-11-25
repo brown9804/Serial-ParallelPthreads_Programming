@@ -28,11 +28,9 @@ int t_vecmatrix_status()
     int miss = 0;
     int ver_serial = 0;
     void *ver_parallel;
-    clock_t start;
     double err_byelement = 0.0;
 
     ///////// INPUT
-    start = clock(); // begin time mark
 
     // Random dimension [3, 8]
     // example int x =(rand() % 10)+10; from 10 - 20
@@ -64,13 +62,13 @@ int t_vecmatrix_status()
     // COMPARE
     if ( ((int)ver_parallel != 0 ) && ((int)ver_serial != 0) )
         {
-            err_byelement = ver_serial / (int)ver_parallel; // castingmake
+            err_byelement = abs(ver_serial / (int)ver_parallel); // castingmake
         }
     else{
         err_byelement = 1;
     }
 
-    printf("\nERROR RATE:                %lf %c", (err_byelement / 100), 37);
+    printf("\n\nPassing 5.0 %c of ERROR RATE\n\nThis ERROR RATE is:                %lf %c",37,  (err_byelement / 100), 37);
 
     /// ALLOW 5% of error
     if (((err_byelement / 100) == 5.0) || ((err_byelement / 100) <= 5.0))
