@@ -1,7 +1,5 @@
-# Serial & Parallel with 
-# Pthreads Programming 
+# Serial & Parallel with <br/> Pthreads Programming 
 
-![CI](https://github.com/brown9804/Serial-ParallelPthreads_Programming/workflows/CI/badge.svg)
 
 Two algorithms:
 1. Multiplication of vectors and matrices. 
